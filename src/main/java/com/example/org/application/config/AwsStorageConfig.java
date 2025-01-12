@@ -1,6 +1,7 @@
 package com.example.org.application.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.AwsCredentials;
@@ -15,7 +16,8 @@ public class AwsStorageConfig {
     @Value("${cloud.aws.credentials.secret-key}")
     private String secretAccessKey;
 
-    private S3Client generateS3Client(){
+    @Bean
+    public S3Client generateS3Client(){
         AwsCredentials credentials = AwsBasicCredentials.create(accessKey, secretAccessKey);
         return S3Client.builder().region(Region.US_EAST_1).credentialsProvider(()->credentials).build();
 

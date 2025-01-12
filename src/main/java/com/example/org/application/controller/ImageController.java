@@ -21,7 +21,7 @@ public class ImageController {
 
     @PostMapping("/upload")
     public ResponseEntity<ImageUploadResponseDto> uploadImage(@RequestParam("file") MultipartFile file) {
-        log.info("Received file upload request: {}", file.getOriginalFilename());
+//        log.info("Received file upload request: {}", file.getOriginalFilename());
         ImageUploadResponseDto response = storageService.uploadImage(file);
         return ResponseEntity.ok(response);
     }
